@@ -52,60 +52,81 @@ var arrayOfDisplayedGraphics = [
       IsFuture: false,
     },
   },
-];
-var sarr = [
   {
-    CurrentMethod: "point",
+    CurrentMethod: "polygon",
     LocationName: "Location 1",
-    LocationPoints: [2583671.710763707, 4370243.505248234],
-    Color: "Yellow",
+    LocationPoints: [
+      [
+        4748976.615664677,
+        2591812.5378114847
+      ],
+      [
+        4747210.504341669,
+        2591296.7225372903
+      ],
+      [
+        4747586.152421802,
+        2589463.3356386665
+      ],
+      [
+        4749374.68581831,
+        2588728.859541717
+      ],
+      [
+        4750585.730375124,
+        2590141.744857993
+      ],
+      [
+        4748976.610987146,
+        2591812.5378114847
+      ]
+    ],
+    Color: "yellow",
     Data: {
-      Id: 64,
-      ProjectName: "Project 1",
-      SideName: "ggf",
-      ContractorName: "dd",
-      camera: "data",
-    },
-  },
-  {
-    CurrentMethod: "point",
-    LocationName: "Location 2",
-    LocationPoints: [2583671.710763707, 5370243.505248234],
-    Color: "blue",
-    Data: {
-      Id: 33,
+      Id: 2,
       ProjectName: "Project 2",
-      SideName: "vv",
-      ContractorName: "dcsa",
+      SideName: "polygon",
+      ContractorName: "polyg",
       camera: "data",
+      IsFuture: false,
     },
   },
   {
-    CurrentMethod: "point",
-    LocationName: "Location 3",
-    LocationPoints: [8583671.710763707, 7370243.505248234],
-    Color: "green",
+    CurrentMethod: "polygon",
+    LocationName: "Location 1",
+    LocationPoints: [
+      [
+        779165.0316493756,
+        3460782.966426249
+      ],
+      [
+        -934525.2623675946,
+        2127451.3256524154
+      ],
+      [
+        112091.7515163217,
+        819457.6077094455
+      ],
+      [
+        1252957.2317173865,
+        2836732.8279334046
+      ],
+      [
+        779165.0316493756,
+        3460782.966426249
+      ]
+    ],
+    Color: "orange",
     Data: {
-      Id: 24,
-      ProjectName: "Project 3",
-      SideName: "cv",
-      ContractorName: "bb",
+      Id: 2,
+      ProjectName: "Project 2",
+      SideName: "polygon",
+      ContractorName: "polyg",
       camera: "data",
+      IsFuture: false,
     },
   },
-  {
-    CurrentMethod: "point",
-    LocationName: "Location 4",
-    LocationPoints: [4583671.710763707, 2370243.505248234],
-    Color: "red",
-    Data: {
-      Id: 55,
-      ProjectName: "Project 4",
-      SideName: "ew",
-      ContractorName: "xc",
-      camera: "data",
-    },
-  },
+  
 ];
 var pointGraphic;
 var polygonGraphic;
@@ -120,6 +141,7 @@ var currentFeat = {
   graphic: {},
   obj: {},
 };
+var index = 0;
 
 var sidePoint = [];
 var errorMsg = document.getElementById("errMsg");
@@ -207,15 +229,7 @@ async function initializeMap() {
           // Handle any errors here
         });
 
-      view.when(function () {
-        view.goTo(
-          {
-            target: gra,
-            // zoom: 13
-          },
-          { duration: 4000 }
-        );
-      });
+
 
       // updated starting calling of draw
       //draw graphics
@@ -529,6 +543,49 @@ async function getGraphics(arrayOfDisplayedGraphics) {
 
     gra = gL.graphics;
     console.log(gra);
+
+        function stepThroughGraphics(view, gra, index) {
+      if (index < gra.length) {
+        var geometryy = gra.items[index++].geometry;
+        console.log(geometryy.extent)
+        if (geometryy.type === "point") {
+          view.goTo({
+            target: [geometryy.longitude, geometryy.latitude],
+            // zoom: 6
+          },
+          {
+            duration: 3000,
+            maxDuration: 3000
+          },
+          {
+            speedFactor: 0.3,
+            easing: "in-expo"
+          }
+          ).then(function() {
+            window.setTimeout(stepThroughGraphics.bind(window, view, gra, index), 2000);
+          });
+        } else {
+            view.goTo({
+              target: geometryy.extent,
+              // zoom: 6
+            },
+            {
+              duration: 3000,
+              maxDuration: 3000
+            },
+            {
+              speedFactor: 0.3,
+              easing: "in-expo"
+            }
+            ).then(function() {
+              window.setTimeout(stepThroughGraphics.bind(window, view, gra, index), 2000);
+            });
+          }
+      } else
+        loading = "done";
+    }
+    stepThroughGraphics(view, gra, index);
+    
     await view.when();
     return gra; // You can return the view object
   } catch (error) {
