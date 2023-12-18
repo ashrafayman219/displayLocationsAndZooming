@@ -8,7 +8,7 @@ var arrayOfDisplayedGraphics = [
   {
     CurrentMethod: "point",
     LocationName: "Location 1",
-    LocationPoints: [2883671.710763707, 4670243.505248234],
+    LocationPoints: [9283671.710763707, 4670243.505248234],
     Color: "Yellow",
     Data: {
       Id: 1,
@@ -17,39 +17,6 @@ var arrayOfDisplayedGraphics = [
       ContractorName: "dd",
       camera: "data",
       IsFuture: true,
-    },
-  },
-  {
-    CurrentMethod: "point",
-    LocationName: "Location 1",
-    LocationPoints: [4783671.710763707, 1370243.505248234],
-    Color: "red",
-    Data: {
-      Id: 6,
-      ProjectName: "Project 1",
-      SideName: "dd",
-      ContractorName: "dd",
-      camera: "data",
-      IsFuture: true,
-    },
-  },
-  {
-    CurrentMethod: "polygon",
-    LocationName: "Location 1",
-    LocationPoints: [
-      [2783671.710763707, 4670243.505248234],
-      [2183671.710763707, 4570243.505248234],
-      [2283671.710763707, 4370243.505248234],
-      [2783671.710763707, 4670243.505248234],
-    ],
-    Color: "Green",
-    Data: {
-      Id: 2,
-      ProjectName: "Project 2",
-      SideName: "polygon",
-      ContractorName: "polyg",
-      camera: "data",
-      IsFuture: false,
     },
   },
   {
@@ -95,6 +62,39 @@ var arrayOfDisplayedGraphics = [
     CurrentMethod: "polygon",
     LocationName: "Location 1",
     LocationPoints: [
+      [2783671.710763707, 4670243.505248234],
+      [2183671.710763707, 4570243.505248234],
+      [2283671.710763707, 4370243.505248234],
+      [2783671.710763707, 4670243.505248234],
+    ],
+    Color: "Green",
+    Data: {
+      Id: 2,
+      ProjectName: "Project 2",
+      SideName: "polygon",
+      ContractorName: "polyg",
+      camera: "data",
+      IsFuture: false,
+    },
+  },
+  {
+    CurrentMethod: "point",
+    LocationName: "Location 1",
+    LocationPoints: [4783671.710763707, 1370243.505248234],
+    Color: "red",
+    Data: {
+      Id: 6,
+      ProjectName: "Project 1",
+      SideName: "dd",
+      ContractorName: "dd",
+      camera: "data",
+      IsFuture: true,
+    },
+  },
+  {
+    CurrentMethod: "polygon",
+    LocationName: "Location 1",
+    LocationPoints: [
       [
         779165.0316493756,
         3460782.966426249
@@ -126,7 +126,46 @@ var arrayOfDisplayedGraphics = [
       IsFuture: false,
     },
   },
-  
+  {
+    CurrentMethod: "polygon",
+    LocationName: "Location 1",
+    LocationPoints: [
+      [
+        1372212.3888252592,
+        2415560.7472385406
+      ],
+      [
+        1345375.9109256044,
+        2400773.300924427
+      ],
+      [
+        1360437.19945615,
+        2358875.534648613
+      ],
+      [
+        1393024.3515439613,
+        2370924.5655469894
+      ],
+      [
+        1399322.7085657872,
+        2396939.5184633513
+      ],
+      [
+        1372212.3888252592,
+        2415560.7472385406
+      ]
+    ],
+    Color: "blue",
+    Data: {
+      Id: 2,
+      ProjectName: "Project 2",
+      SideName: "polygon",
+      ContractorName: "polyg",
+      camera: "data",
+      IsFuture: false,
+    },
+  },
+
 ];
 var pointGraphic;
 var polygonGraphic;
